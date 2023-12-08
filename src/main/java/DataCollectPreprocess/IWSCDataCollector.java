@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * This class is used to collect data from a WebSocket server.
  * It uses the Tyrus library, which is a reference implementation of the WebSocket API in Java.
- * @author WETAKA FRANCIS
+ * @author WETAKA FRANCIS S.
  */
 @ClientEndpoint
 public interface IWSCDataCollector {

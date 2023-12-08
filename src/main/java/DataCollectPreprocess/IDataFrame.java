@@ -4,6 +4,7 @@ import java.util.*;
 
 /**
  * An interface for DataFrame-like structures in Java.
+ * @author WETAKA FRANCIS S.
  */
 public interface IDataFrame {
     /**

@@ -5,7 +5,7 @@ import java.io.FileReader;
 /**
  *
  * Interface for data Assembling
- * @author WETAKA FRANCIS
+ * @author WETAKA FRANCIS S.
  */
 public interface IDataAssembler {
     /**

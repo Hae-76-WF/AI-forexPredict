@@ -17,7 +17,7 @@ public class DataAssembler implements IDataAssembler {
      * @param jsonString The JSON string to parse.
      * @return A 2D array containing the OHLCV and time data.
      *
-     * @Note The JSON data extracted in the code below is applicable the websocket API
+     * @Note The JSON data extracted in the code below is applicable to the websocket API
      * being used in here.
      */
     public String[][] webSocketDataOrganizer(String jsonString) {

@@ -158,22 +158,25 @@ public class DataFrame implements IDataFrame {
         return df;
     }
 
-//    /**
-//     * The main method which is the entry point for any Java program. In this method, a new DataFrame is created and some operations are performed to demonstrate the functionality of the DataFrame class.
-//     * @param args Command line arguments.
-//
-//    public static void main(String[] args) {
-//        DataFrame df = new DataFrame();
-//        df.addColumn("Column1", new ArrayList<>(Arrays.asList(1.1, 2.2, 3.3, null, 5.5)));
-//        df.addColumn("Column2", new ArrayList<>(Arrays.asList(4.4, null, 6.6, 7.7, 8.8)));
-//        df.print();
-//
-//        DataFrame head = df.head();
-//        head.print();
-//
-//        DataFrame filled = df.fillna(0.0);
-//        filled.print();
-//    }
-//     * /
+    /**
+     * The main method which is the entry point for any Java program. In this method, a new DataFrame is created and some operations are performed to demonstrate the functionality of the DataFrame class.
+     *      @param args Command line arguments.
+     *
+     *     public static void main(String[] args) {
+     *         DataFrame df = new DataFrame();
+     *         df.addColumn("Column1", new ArrayList<>(Arrays.asList(1.1, 2.2, 3.3, null, 5.5)));
+     *        df.addColumn("Column2", new ArrayList<>(Arrays.asList(4.4, null, 6.6, 7.7, 8.8)));
+     *        df.print();
+     *
+     *         DataFrame head = df.head();
+     *         head.print();
+     *
+     *         DataFrame filled = df.fillna(0.0);
+     *         filled.print();
+     *     }
+     *
+     *
+     */
+
 }
 

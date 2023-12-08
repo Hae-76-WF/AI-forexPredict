@@ -24,7 +24,8 @@ public class WSCDataCollector implements IWSCDataCollector {
      * Constructor that takes a ClientManager and a URL as parameters.
      * It establishes a connection to the WebSocket server at the given URL.
      * Example of clientManager to be passed;
-     * ---------------------------------------------------------------------
+     *
+     *
      * ClientManager = ClientManager.createClient();
      */
     public WSCDataCollector(ClientManager manager, String url) {
