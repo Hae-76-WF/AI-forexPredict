@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 
-public class DataAssembler implements DAssembler {
+public class DataAssembler implements IDataAssembler {
     /**
      * Parses a JSON string and extracts the OHLCV and time data.
      * @param jsonString The JSON string to parse.

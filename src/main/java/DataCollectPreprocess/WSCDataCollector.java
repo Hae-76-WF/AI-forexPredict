@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  * @author WETAKA FRANCIS
  */
 @ClientEndpoint
-public class WSCDataCollector implements WebSock {
+public class WSCDataCollector implements IWSCDataCollector {
 
     private static CountDownLatch latch;
     private Session ss;
