@@ -43,4 +43,17 @@ This is partial development and so does not contain all indicators as the other 
 </ul>
 
 #### Volume
-> Under Development!
+> Under Development! <strong style="color: yellow; padding: 3px; background-color: green; border-radius: 6px;">Pending</strong>
+
+### ML Models
+#### Support Vector Machine (SVM)
+<ul>
+<li>CPU - Currently implemented to run on the CPU</li>
+<li>GPU - <strong style="color: yellow; padding: 3px; background-color: green; border-radius: 6px;">Pending</strong></li>
+</ul>
+
+#### Long Short-Term(LSTM) Memory
+<ul>
+<li>CPU - <strong style="color: yellow; padding: 3px; background-color: green; border-radius: 6px;">Pending</strong></li>
+<li>GPU - <strong style="color: yellow; padding: 3px; background-color: green; border-radius: 6px;">Pending</strong></li>
+</ul>
