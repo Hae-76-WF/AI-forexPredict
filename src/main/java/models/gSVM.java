@@ -1,12 +1,17 @@
 package models;
 
+import com.aparapi.Kernel;
+import com.aparapi.Range;
+import com.aparapi.device.Device;
+import com.aparapi.device.OpenCLDevice;
+import com.aparapi.internal.opencl.OpenCLPlatform;
+
 import java.io.*;
-import java.util.Random;
 
 /**
- * SVM is a class for Support Vector Machines (SVMs) with a sigmoid kernel.
+ * SVM is a class for Support Vector Machines (SVMs) that runs on a GPU.
  */
-public class SVM {
+public class gSVM {
     private double[][] inputs;
     private int[] targets;
     private double[] alphas;
@@ -15,12 +20,12 @@ public class SVM {
     private double EPOCHS = 1000;
 
     // Constructor
-    public SVM(double learningRate, double EPOCHS) {
+    public gSVM(double learningRate, double EPOCHS) {
         this.learningRate = learningRate;
         this.EPOCHS = EPOCHS;
     }
 
-    public SVM(){
+    public gSVM(){
 
     }
 
@@ -61,12 +66,20 @@ public class SVM {
 
         double learningRate = initialLearningRate;
 
-        for (int n = 0; n < EPOCHS; n++) {
-            for (int i = 0; i < inputs.length; i++) {
+        double finalLearningRate = learningRate;
+        Kernel kernel = new Kernel(){
+            @Override
+            public void run() {
+                int i = getGlobalId();
                 double delta = 1 - targets[i] * f(inputs[i]);
-                alphas[i] += learningRate * delta;
-                b += learningRate * delta;
+                alphas[i] += finalLearningRate * delta;
+                b += finalLearningRate * delta;
             }
+        };
+
+        for (int n = 0; n < EPOCHS; n++) {
+            Range range = Range.create(inputs.length);
+            kernel.execute(range);
 
             // Decrease the learning rate over time
             learningRate *= 0.99;
@@ -81,11 +94,16 @@ public class SVM {
      * @return The output of the SVM
      */
     private double f(double[] x) {
-        double sum = 0;
-        for (int i = 0; i < inputs.length; i++) {
-            sum += alphas[i] * targets[i] * kernel(inputs[i], x);
-        }
-        return sum + b;
+        final double[] sum = new double[1];
+        Kernel kernel = new Kernel(){
+            @Override
+            public void run() {
+                int i = getGlobalId();
+                sum[0] += alphas[i] * targets[i] * kernel(inputs[i], x);
+            }
+        };
+        kernel.execute(Range.create(inputs.length));
+        return sum[0] + b;
     }
 
     /**
@@ -163,14 +181,5 @@ public class SVM {
         return svm;
     }
 
-//    public static void main(String[] args) {
-//        svm.train(inputs, targets);
-//        svm.saveModel("svm.model");
-//
-//        SVM svm = SVM.loadModel("svm.model");
-//        int prediction = svm.predict(newInput);
-//
-//
-//    }
-
 }
+
