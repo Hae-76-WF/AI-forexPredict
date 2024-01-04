@@ -1,5 +1,11 @@
 package models;
 
+import com.aparapi.Kernel;
+import com.aparapi.Range;
+import com.aparapi.device.Device;
+import com.aparapi.internal.kernel.KernelManager;
+import com.aparapi.internal.kernel.KernelPreferences;
+
 public class ModelSample {
     public static void main(String[] args) {
         // Assuming forex data of OHLCV
