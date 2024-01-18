@@ -15,7 +15,6 @@ dependencies {
     implementation("org.glassfish.tyrus.bundles:tyrus-standalone-client:1.9")
     implementation("org.json:json:20230227")
     implementation("com.aparapi:aparapi:3.0.0")
-
 }
 
 tasks.test {

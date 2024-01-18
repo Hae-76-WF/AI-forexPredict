@@ -7,11 +7,12 @@ import com.aparapi.device.OpenCLDevice;
 import com.aparapi.internal.opencl.OpenCLPlatform;
 
 import java.io.*;
+import java.util.Random;
 
 /**
  * SVM is a class for Support Vector Machines (SVMs) that runs on a GPU.
  */
-public class gSVM {
+public class gSVM implements Serializable {
     private double[][] inputs;
     private int[] targets;
     private double[] alphas;
@@ -72,8 +73,8 @@ public class gSVM {
             public void run() {
                 int i = getGlobalId();
                 double delta = 1 - targets[i] * f(inputs[i]);
-                alphas[i] += finalLearningRate * delta;
-                b += finalLearningRate * delta;
+                alphas[i] = alphas[i] + finalLearningRate * delta;
+                b = b + finalLearningRate * delta;
             }
         };
 
@@ -99,7 +100,7 @@ public class gSVM {
             @Override
             public void run() {
                 int i = getGlobalId();
-                sum[0] += alphas[i] * targets[i] * kernel(inputs[i], x);
+                sum[0] = sum[0] + alphas[i] * targets[i] * kernel(inputs[i], x);
             }
         };
         kernel.execute(Range.create(inputs.length));
@@ -162,12 +163,12 @@ public class gSVM {
      * @param filename The name of the file
      * @return The loaded SVM
      */
-    public static SVM loadModel(String filename) {
-        SVM svm = null;
+    public static gSVM loadModel(String filename) {
+        gSVM svm = null;
         try {
             FileInputStream fileIn = new FileInputStream(filename);
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            svm = (SVM) in.readObject();
+            svm = (gSVM) in.readObject();
             in.close();
             fileIn.close();
         } catch (IOException i) {
@@ -179,6 +180,43 @@ public class gSVM {
             return null;
         }
         return svm;
+    }
+
+    public static void main(String[] args) {
+        // Create an SVM with a learning rate of 0.001 and 1000 epochs
+        gSVM svm = new gSVM(0.001, 5);
+
+        // Create a random dataset
+        Random rand = new Random();
+        int numSamples = 100;
+        int numFeatures = 2;
+        double[][] inputs = new double[numSamples][numFeatures];
+        int[] targets = new int[numSamples];
+        for (int i = 0; i < numSamples; i++) {
+            for (int j = 0; j < numFeatures; j++) {
+                inputs[i][j] = rand.nextDouble();
+            }
+            targets[i] = rand.nextBoolean() ? 1 : -1;
+        }
+
+        // Train the SVM
+        svm.train(inputs, targets);
+
+        // Validate the SVM
+        double accuracy = svm.validate(inputs, targets);
+        System.out.println("Validation accuracy: " + accuracy);
+
+        // Save the model
+        svm.saveModel("svm.model");
+
+        // Load the model
+        gSVM loadedSvm = (gSVM) gSVM.loadModel("svm.model");
+
+        // Make a prediction
+        double[] newInput = {0.51, 0.458,1.597};
+        assert loadedSvm != null;
+        int prediction = loadedSvm.predict(newInput);
+        System.out.println("Prediction for [0.5, 0.5]: " + prediction);
     }
 
 }
