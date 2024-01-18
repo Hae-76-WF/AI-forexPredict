@@ -4,21 +4,14 @@ A library aimed at providing utilities for computing indicators data and also bu
 ### Dependencies
 The library is developed with the help of gradle tool and JDK```version 18```
 ```
-Gradle: com.aparapi:aparapi-jni:1.4.3
-Gradle: com.aparapi:aparapi:3.0.0
-Gradle: org.apache.bcel:bcel:6.5.0
-Gradle: org.apiguardian:apiguardian-api:1.1.2
-Gradle: org.glassfish.tyrus.bundles:tyrus-standalone-client:1.9
-Gradle: org.jocl:jocl:2.0.2
-Gradle: org.json:json:20230227
-Gradle: org.junit.jupiter:junit-jupiter-api:5.9.1
-Gradle: org.junit.jupiter:junit-jupiter-engine:5.9.1
-Gradle: org.junit.jupiter:junit-jupiter-params:5.9.1
-Gradle: org.junit.jupiter:junit-jupiter:5.9.1
-Gradle: org.junit.platform:junit-platform-commons:1.9.1
-Gradle: org.junit.platform:junit-platform-engine:1.9.1
-Gradle: org.opentest4j:opentest4j:1.2.0
-Gradle: org.scala-lang:scala-library:2.13.6
+dependencies {
+    testImplementation(platform("org.junit:junit-bom:5.9.1"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    implementation("org.glassfish.tyrus.bundles:tyrus-standalone-client:1.9")
+    implementation("org.json:json:20230227")
+    implementation("com.aparapi:aparapi:3.0.0")
+}
+
 ```
 ### Packages included so far.
 #### Data Collection and Pre-processing
@@ -47,18 +40,15 @@ This is partial development and so does not contain all indicators as the other 
 <li>Stochastic Oscillator</li>
 </ul>
 
-#### Volume
-> Under Development! <strong style="color: yellow; padding: 3px; background-color: green; border-radius: 6px;">Pending</strong>
-
 ### ML Models
 #### Support Vector Machine (SVM)
 <ul>
 <li>CPU - Implemented to run on the CPU</li>
-<li>GPU - Implemented and capable of training and validating on GPU</li>
+<li>GPU - Implemented and capable of training on GPU</li>
 </ul>
 
 #### Long Short-Term(LSTM) Memory
 <ul>
-<li>CPU - <strong style="color: yellow; padding: 3px; background-color: green; border-radius: 6px;">Pending</strong></li>
-<li>GPU - <strong style="color: yellow; padding: 3px; background-color: green; border-radius: 6px;">Pending</strong></li>
+<li>CPU - Implemented to run on the CPU</li>
+<li>GPU - Implemented and capable of training on GPU</li>
 </ul>

@@ -1,5 +1,6 @@
 import DataCollectPreprocess.DataAssembler;
 import DataCollectPreprocess.WSCDataCollector;
+import models.LSTMModel;
 import org.glassfish.tyrus.client.ClientManager;
 
 import javax.websocket.CloseReason;
@@ -26,5 +27,7 @@ public class main {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        LSTMModel ff = new LSTMModel(12,2,0.2);
     }
 }

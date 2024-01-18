@@ -6,7 +6,7 @@ import java.util.Random;
 /**
  * SVM is a class for Support Vector Machines (SVMs) with a sigmoid kernel.
  */
-public class SVM {
+public class SVM implements Serializable{
     private double[][] inputs;
     private int[] targets;
     private double[] alphas;
