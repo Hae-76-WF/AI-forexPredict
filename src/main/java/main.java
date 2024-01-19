@@ -28,6 +28,5 @@ public class main {
             throw new RuntimeException(e);
         }
 
-        LSTMModel ff = new LSTMModel(12,2,0.2);
     }
 }

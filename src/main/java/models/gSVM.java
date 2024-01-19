@@ -182,42 +182,42 @@ public class gSVM implements Serializable {
         return svm;
     }
 
-    public static void main(String[] args) {
-        // Create an SVM with a learning rate of 0.001 and 1000 epochs
-        gSVM svm = new gSVM(0.001, 5);
-
-        // Create a random dataset
-        Random rand = new Random();
-        int numSamples = 100;
-        int numFeatures = 2;
-        double[][] inputs = new double[numSamples][numFeatures];
-        int[] targets = new int[numSamples];
-        for (int i = 0; i < numSamples; i++) {
-            for (int j = 0; j < numFeatures; j++) {
-                inputs[i][j] = rand.nextDouble();
-            }
-            targets[i] = rand.nextBoolean() ? 1 : -1;
-        }
-
-        // Train the SVM
-        svm.train(inputs, targets);
-
-        // Validate the SVM
-        double accuracy = svm.validate(inputs, targets);
-        System.out.println("Validation accuracy: " + accuracy);
-
-        // Save the model
-        svm.saveModel("svm.model");
-
-        // Load the model
-        gSVM loadedSvm = (gSVM) gSVM.loadModel("svm.model");
-
-        // Make a prediction
-        double[] newInput = {0.51, 0.458,1.597};
-        assert loadedSvm != null;
-        int prediction = loadedSvm.predict(newInput);
-        System.out.println("Prediction for [0.5, 0.5]: " + prediction);
-    }
+//    public static void main(String[] args) {
+//        // Create an SVM with a learning rate of 0.001 and 1000 epochs
+//        gSVM svm = new gSVM(0.001, 5);
+//
+//        // Create a random dataset
+//        Random rand = new Random();
+//        int numSamples = 100;
+//        int numFeatures = 2;
+//        double[][] inputs = new double[numSamples][numFeatures];
+//        int[] targets = new int[numSamples];
+//        for (int i = 0; i < numSamples; i++) {
+//            for (int j = 0; j < numFeatures; j++) {
+//                inputs[i][j] = rand.nextDouble();
+//            }
+//            targets[i] = rand.nextBoolean() ? 1 : -1;
+//        }
+//
+//        // Train the SVM
+//        svm.train(inputs, targets);
+//
+//        // Validate the SVM
+//        double accuracy = svm.validate(inputs, targets);
+//        System.out.println("Validation accuracy: " + accuracy);
+//
+//        // Save the model
+//        svm.saveModel("svm.model");
+//
+//        // Load the model
+//        gSVM loadedSvm = (gSVM) gSVM.loadModel("svm.model");
+//
+//        // Make a prediction
+//        double[] newInput = {0.51, 0.458,1.597};
+//        assert loadedSvm != null;
+//        int prediction = loadedSvm.predict(newInput);
+//        System.out.println("Prediction for [0.5, 0.5]: " + prediction);
+//    }
 
 }
 
